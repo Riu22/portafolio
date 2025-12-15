@@ -1,0 +1,400 @@
+/* Variables de color y fuentes estilo Terminal */
+:root {
+    --color-primary: #00ff00; /* Verde brillante (color del texto principal) */
+    --color-dark: #1f1f1f; /* Fondo oscuro casi negro */
+    --color-bg: #121212; /* Fondo muy oscuro */
+    --color-accent: #ff9900; /* Naranja para detalles o links */
+    --color-secondary: #008000; /* Verde más oscuro para sombras */
+    --font-stack: 'Fira Code', 'Roboto Mono', 'Consolas', monospace;
+}
+
+/* Base y Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    line-height: 1.5;
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    scroll-behavior: smooth;
+    text-shadow: 0 0 5px var(--color-secondary); /* Efecto brillo/CRT */
+}
+
+/* Efecto de borde CRT/Scanline (opcional, si quieres un look muy retro) */
+/* body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(18, 16, 16, 0.5) 0,
+        rgba(18, 16, 16, 0.5) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+} */
+
+/* Enlaces por defecto */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Cabecera y Navegación */
+.main-header {
+    background-color: var(--color-dark);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: 0 0 10px var(--color-secondary);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-menu a {
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: 1px dashed transparent;
+}
+
+.nav-menu a:hover {
+    border: 1px dashed var(--color-accent);
+    background-color: rgba(0, 255, 0, 0.05);
+}
+
+.btn-contact {
+    background-color: var(--color-dark);
+    border: 2px solid var(--color-primary);
+    padding: 6px 12px;
+    font-weight: bold;
+}
+
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 0 5%;
+}
+
+.terminal-block {
+    background-color: var(--color-dark);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 15px var(--color-secondary);
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    font-size: 1.2rem;
+    white-space: pre-wrap;
+    overflow: hidden;
+}
+
+.terminal-block .command {
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.terminal-block .data {
+    color: var(--color-primary);
+}
+
+.terminal-block .comment {
+    color: #4CAF50; /* Un verde más apagado para comentarios */
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Animación de Terminal (Linea de código que se escribe) */
+.typing-animation {
+    background: none;
+    padding: 10px 0;
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    white-space: pre-wrap;
+    min-height: 25px;
+    overflow: hidden;
+    border-right: .15em solid var(--color-accent); /* Cursor */
+    animation: blink-caret .75s step-end infinite;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-accent); }
+}
+
+.social-links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.social-links a {
+    font-size: 1.2rem;
+    margin: 0 15px;
+}
+
+.email-link {
+    border: 1px dashed var(--color-primary);
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+/* Secciones de Contenido Generales */
+.content-section {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+    padding-bottom: 5px;
+    color: var(--color-accent);
+}
+
+/* Estilos para texto animado (controlado por JS) */
+.animated-text {
+    opacity: 0;
+}
+
+.animated-text.is-visible {
+    opacity: 1;
+}
+
+.highlight-text {
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+/* Secciones Card (About, Proyectos) */
+.about-cards, .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card, .project-card {
+    background-color: var(--color-dark);
+    padding: 20px;
+    border-radius: 0;
+    border: 1px solid var(--color-secondary);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+.card h3, .project-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.card ul {
+    list-style: none;
+}
+
+/* Secció CV (Timeline) */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--color-secondary);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 10px 40px;
+    margin-bottom: 20px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    top: 23px;
+    z-index: 1;
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -7.5px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -7.5px;
+}
+
+.timeline-content {
+    background-color: var(--color-dark);
+    padding: 15px;
+    border-radius: 0;
+    border: 1px dashed var(--color-secondary);
+}
+
+.tags {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    margin-top: 10px;
+}
+
+/* Botones de Proyectos */
+.project-links {
+    margin-top: 15px;
+}
+
+.btn-action {
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-dark);
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.btn-action:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.btn-download-cv {
+    display: inline-block;
+    margin-top: 20px;
+    border: 1px dashed var(--color-accent);
+    padding: 8px 15px;
+}
+
+/* Secció Blog */
+.blog-list {
+    list-style: none;
+}
+
+.blog-list li {
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--color-secondary);
+}
+
+/* Secció Contacte */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-primary);
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-primary);
+    font-family: var(--font-stack);
+    resize: vertical;
+}
+
+.btn-submit {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contact-info a {
+    color: var(--color-accent);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-dark);
+    border-top: 2px solid var(--color-primary);
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px var(--color-secondary);
+}
+
+/* Adaptació mòbil */
+@media (max-width: 768px) {
+    /* ... (Mantenir la lògica de mòbil de l'anterior CSS) ... */
+    .nav-menu { display: none; flex-direction: column; width: 100%; position: absolute; top: 50px; left: 0; background-color: var(--color-dark); padding-bottom: 10px; }
+    .nav-menu.active { display: flex; }
+    .nav-menu a { margin: 10px 5%; }
+    .burger-menu { display: block; }
+    .terminal-block { font-size: 0.9rem; }
+    
+    .timeline::before { left: 20px; }
+    .timeline-item { width: 100%; padding-left: 60px; padding-right: 10px; left: 0 !important; text-align: left !important; }
+    .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 12.5px; }
+}
