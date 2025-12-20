@@ -12,13 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const char = text.charAt(i);
                 
                 if (char === '<') {
-                    const endIndex = text.indexOf('>', i);
-                    if (endIndex !== -1) {
-                        element.innerHTML += text.substring(i, endIndex + 1);
-                        i = endIndex + 1;
+                    // Buscamos si es un enlace completo
+                    if (text.substring(i, i + 3) === '<a ') {
+                        const closingTagIndex = text.indexOf('</a>', i);
+                        if (closingTagIndex !== -1) {
+                            const fullLink = text.substring(i, closingTagIndex + 4);
+                            element.innerHTML += fullLink;
+                            i = closingTagIndex + 4; // Saltamos al final del link
+                        }
                     } else {
-                        element.innerHTML += char;
-                        i++;
+                        // Para otras etiquetas (como <br> o <span>)
+                        const endIndex = text.indexOf('>', i);
+                        if (endIndex !== -1) {
+                            element.innerHTML += text.substring(i, endIndex + 1);
+                            i = endIndex + 1;
+                        }
                     }
                 } else {
                     element.innerHTML += char;
