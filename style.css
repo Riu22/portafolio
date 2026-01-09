@@ -352,6 +352,50 @@ footer {
     box-shadow: 0 0 10px var(--color-secondary);
 }
 
+.project-card img {
+    width: 100%;     
+    height: auto; 
+    margin-top: 15px;
+    border: 1px solid var(--color-secondary);
+    border-radius: 4px;
+    display: block;
+    filter: grayscale(20%) contrast(110%); 
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card img:hover {
+    transform: scale(1.02); 
+    border-color: var(--color-accent);
+}
+
+
+.logo::before {
+    content: ">$ ";
+    color: var(--color-primary);
+}
+
+.nav-menu a::before {
+    content: "> ";
+    color: var(--color-accent);
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+
+.section-title::before,
+.card h3::before,
+.project-card h3::before,
+.btn-download-cv::before {
+    content: "> ";
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+.btn-submit::after {
+    content: " >_";
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .nav-menu { display: none; flex-direction: column; width: 100%; position: absolute; top: 50px; left: 0; background-color: var(--color-dark); padding-bottom: 10px; }
     .nav-menu.active { display: flex; }
